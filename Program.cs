@@ -7,6 +7,7 @@ builder.Services.AddRazorPages();
 
 // DI
 builder.Services.AddSingleton<DataContext>();
+builder.Services.AddScoped<BlogService>();
 
 var app = builder.Build();
 
