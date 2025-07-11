@@ -1,20 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Orange_Tree.Models;
+using Orange_Tree.services;
 
-namespace Orange_Tree.Pages
+namespace Orange_Tree.Pages;
+
+public class IndexModel(ILogger<IndexModel> logger, BlogService service) : PageModel
 {
-    public class IndexModel : PageModel
+    private readonly ILogger<IndexModel> _logger = logger;
+    
+    public List<Blog> Blogs { get; set; } = new List<Blog>();
+    
+    public async Task<IActionResult> OnGetAsync()
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-
-        }
+        Blogs = await service.GetBlogsAsync();
+        return Page();
     }
 }

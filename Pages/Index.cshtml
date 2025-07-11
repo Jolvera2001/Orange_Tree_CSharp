@@ -5,6 +5,16 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Blogs</h1>
+    <h2>Hot Reload Test</h2>
+    <div>
+        @foreach(var blog in Model.Blogs)
+        {
+            <div>
+                <h3>@blog.Title</h3>
+                <h5>@blog.Description</h5>
+            </div>
+        }
+    </div>
+
 </div>

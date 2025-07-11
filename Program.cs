@@ -1,3 +1,4 @@
+using MongoDB.Driver;
 using Orange_Tree.services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // DI
-builder.Services.AddSingleton<DataContext>();
+builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
+{
+    var connectionString = Environment.GetEnvironmentVariable("ORANGE_TREE_URI");
+    if (string.IsNullOrEmpty(connectionString))
+    {
+        throw new Exception("ORANGE_TREE_URI not set");
+    }
+    return new MongoClient(connectionString);
+});
+
 builder.Services.AddScoped<BlogService>();
 
 var app = builder.Build();
