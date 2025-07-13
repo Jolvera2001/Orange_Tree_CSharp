@@ -5,19 +5,9 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>@Model.Blog?.Title</title>
-</head>
-<body>
-<div>
+<article>
     <h2>@Model.Blog?.Title</h2>
     <h4>@Model.Blog?.Description</h4>
-    <div>
-        @Model.
-    </div>
-</div>
-</body>
-</html>
+    <div>@Html.Raw(Model.Blog?.Content)</div>
+</article>
+ 

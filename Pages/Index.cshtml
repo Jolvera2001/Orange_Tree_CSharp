@@ -10,11 +10,12 @@
     <div>
         @foreach(var blog in Model.Blogs)
         {
-            <div>
-                <h3>@blog.Title</h3>
-                <h5>@blog.Description</h5>
-            </div>
+            <a asp-page="/Reading" asp-route-slug="@blog.BlogSlug">
+                <div>
+                    <h3>@blog.Title</h3>
+                    <h5>@blog.Description</h5>
+                </div>
+            </a>
         }
     </div>
-
 </div>

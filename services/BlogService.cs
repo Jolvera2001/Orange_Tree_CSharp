@@ -14,7 +14,8 @@ namespace Orange_Tree.services
             return await collection.Find(Builders<Blog>.Filter.Empty)
                 .Project<Blog>(Builders<Blog>.Projection
                     .Include(x => x.Title)
-                    .Include(x => x.Description))
+                    .Include(x => x.Description)
+                    .Include(x => x.BlogSlug))
                 .ToListAsync();
         }
 
