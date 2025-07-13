@@ -15,7 +15,12 @@ public class Reading(ILogger<IndexModel> logger, BlogService service) : PageMode
     public async Task<IActionResult> OnGetAsync(string slug)
     {
         var blog = await service.GetBlogBySlugAsync(slug);
-        Blog = blog ?? FallBackBlog();
+        if (blog == null)
+        {
+            return NotFound();
+        }
+        blog.Content = SanitizeBlog(blog.Content);
+        Blog = blog;
         return Page();
     }
 
@@ -23,15 +28,5 @@ public class Reading(ILogger<IndexModel> logger, BlogService service) : PageMode
     {
         var parsedContent = Markdown.ToHtml(content);
         return _htmlSanitizer.Sanitize(parsedContent);
-    }
-
-    private Blog FallBackBlog()
-    {
-        return new Blog()
-        {
-            Title = "Error has Occured",
-            Description = "This either doesn't exist or has been removed",
-            Content = "Sorry for the inconvenience",
-        };
     }
 }
