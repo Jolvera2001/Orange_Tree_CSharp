@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Orange_Tree";
+}
+
+<div class="">
+    <div class="max-w-full mx-auto mt-8 p-4">
+        @foreach(var blog in Model.Blogs)
+        {
+            <a asp-page="/Reading" asp-route-slug="@blog.BlogSlug">
+                <div class="card bg-base-300 w-80 shadow-md">
+                    <div class="card-body">
+                        <h3 class="card-title">@blog.Title</h3>
+                        <h5>@blog.Description</h5>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>

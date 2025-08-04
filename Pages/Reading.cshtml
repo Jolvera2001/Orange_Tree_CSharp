@@ -1,0 +1,15 @@
+﻿@page "reading/{slug}"
+@model Orange_Tree.Pages.Reading
+
+<div class="max-w-full mx-auto mt-8 p-4">
+    <article>
+        <h2>@Model.Blog?.Title</h2>
+        <h4>@Model.Blog?.Description</h4>
+        <div class="max-w-full flex justify-center">
+            <div class="max-w-1/2 text-wrap prose">
+                @Html.Raw(Model.Blog?.Content)
+            </div>
+        </div>
+    </article>
+</div>
+ 

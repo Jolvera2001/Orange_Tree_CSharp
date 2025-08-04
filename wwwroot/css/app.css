@@ -1,0 +1,6 @@
+﻿@import "tailwindcss";
+@source "../Pages/*.{razor,html}";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark, dim;
+};
