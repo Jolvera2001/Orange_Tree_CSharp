@@ -4,18 +4,49 @@
     ViewData["Title"] = "Orange_Tree";
 }
 
-<div class="">
-    <div class="max-w-full mx-auto mt-8 p-4">
-        @foreach(var blog in Model.Blogs)
+<div class="max-w-full mx-auto min-h-screen flex flex-col space-y-3">
+    @* Hero Section *@
+    <div class="flex flex-1">
+        <div x-data="{ show: false }"
+             x-init="setTimeout(() => show = true, 100)"
+             class="hero bg-base-200 min-h-screen min-w-1/2">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 x-show="show"
+                        x-transition:enter="transition ease-in-out duration-550"
+                        x-transition:enter-start="opacity-0 transform translate-y-7"
+                        x-transition:enter-end="opacity-100 transform"
+                        class="text-5xl font-bold pb-8">
+                        Welcome to Orange_Tree!
+                    </h1>
+                    <h2 x-show="show"
+                        x-transition:enter="transition ease-in-out duration-1200"
+                        x-transition:enter-start="opacity-0 transform translate-y-7"
+                        x-transition:enter-end="opacity-100 transform"
+                        class="text-2xl font-md">
+                        After getting myself settled in my life, I've decided to make a personal blogging site just
+                        to share my thoughts and ideas while also learning along the way. Hope you enjoy your stay!
+                    </h2>
+                </div>
+            </div>
+        </div>
+        @* <div class="min-w-1/6 p-4 text-center"> *@
+        @*     <h1 class="text-2xl">Recent Activity</h1> *@
+        @* </div> *@
+    </div>
+
+    @* Blog List *@
+    <div class="flex-shrink-0 mt-4 p-12">
+        @foreach (var blog in Model.Blogs)
         {
-            <a asp-page="/Reading" asp-route-slug="@blog.BlogSlug">
-                <div class="card bg-base-300 w-80 shadow-md">
+            <div class="card bg-base-300 w-80 shadow-md">
+                <a asp-page="/Reading" asp-route-slug="@blog.BlogSlug">
                     <div class="card-body">
                         <h3 class="card-title">@blog.Title</h3>
                         <h5>@blog.Description</h5>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         }
     </div>
 </div>
